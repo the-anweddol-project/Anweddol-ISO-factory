@@ -1,7 +1,7 @@
 # Anweddol container ISO factory
 ---
 
-This script creates functional and up-to-date live debian images that servers will be using for containers.
+This script creates functional and up-to-date live debian images that [Anweddol servers](https://github.com/the-anweddol-project/Anweddol-server) will be using for containers.
 
 ## Requirements
 
