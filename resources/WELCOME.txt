@@ -1,0 +1,24 @@
+
+Hello and welcome on this container.
+
+This system is a temporary virtual machine that is meant to be 
+destroyed once used.
+
+Before continue, please note : 
+
+- A container is not meant to host a static service : It can be 
+  destroyed at any time, without previous warning.
+
+- Performances can vary between a server to another : Do not always
+  expect high performances.
+
+- Anweddol is an open-source software : It means that anybody 
+  can modify the software and host it for mischievous goals. Make sure 
+  this container is hosted on a trusted server before using anything.
+
+To destroy the container, send a DESTROY request to the server with
+appropriates credentails or simply shutdown the machine.
+
+If you encounter any problems, malfunctions or bugs, please open an issue on
+the official github repository : https://github.com/the-anweddol-project/Anweddol-server
+
