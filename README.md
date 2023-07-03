@@ -1,4 +1,5 @@
 # Anweddol container ISO factory
+[![chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://anweddol.zulipchat.com)
 ---
 
 This script creates functional and up-to-date live debian images that [Anweddol servers](https://github.com/the-anweddol-project/Anweddol-server) will be using for containers.
