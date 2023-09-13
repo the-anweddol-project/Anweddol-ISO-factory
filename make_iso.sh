@@ -5,7 +5,6 @@
 # Refer to all the comments below to learn more.
 
 if [ `/bin/id -u` -ne 0 ]; then
-
     echo "This script must be run as root"
     exit
 
@@ -16,7 +15,6 @@ echo "
 ┣┫┏┓┓┏┏┏┓┏┫┏┫┏┓┃  ┃┗┓┃┃  ┣ ┏┓┏╋┏┓┏┓┓┏
 ┛┗┛┗┗┻┛┗ ┗┻┗┻┗┛┗  ┻┗┛┗┛  ┻ ┗┻┗┗┗┛┛ ┗┫
 ----------------------------------- ┛
-
 "
 
 # Define work folder paths
@@ -105,7 +103,9 @@ chmod +x $bootstrap_path/chroot/bin/anweddol_container_setup.sh
 cp $resources_path/WELCOME.txt $bootstrap_path/chroot/etc/
 
 sed -i "26i endpoint ALL=(ALL:ALL) NOPASSWD:/bin/anweddol_container_setup.sh" $bootstrap_path/chroot/etc/sudoers
-# The container `/etc/hosts` file needs to be modified manually
+
+# The container `/etc/hosts` file needs to be created and modified manually
+touch $bootstrap_path/chroot/etc/hosts
 sed -i "1i 127.0.0.1  anweddol-container\n::1        anweddol-container" $bootstrap_path/chroot/etc/hosts
 
 # Make a squashed filesystem of the previously administrated chroot 
@@ -165,8 +165,8 @@ xorriso -as mkisofs -iso-level 3 -o $result_path/anweddol_container.iso -full-is
     "$bootstrap_path/staging"
 
 # Compute the checksum of the generated ISO
-md5sum --tag $result_path/anweddol_container.iso > $result_path/md5sum.txt
-sha256sum --tag $result_path/anweddol_container.iso > $result_path/sha256sum.txt
+md5sum $result_path/anweddol_container.iso > $result_path/md5sum.txt
+sha256sum $result_path/anweddol_container.iso > $result_path/sha256sum.txt
 
 # Update or create the version file content
 if [ ! -f $result_path/version.txt ]; then
