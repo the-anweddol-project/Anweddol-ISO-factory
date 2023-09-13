@@ -21,7 +21,7 @@ You need these packages installed on the machine :
 - mtools 
 - dosfstools
 
-Install them with your package manager.
+Install them with your package manager, or by executing the `setup.sh` script as root.
 
 ## Usage
 
