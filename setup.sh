@@ -1,9 +1,6 @@
 #!/bin/bash
 
 # Install every needed components
-
-
-
 apt install \
 	debootstrap \
 	squashfs-tools \
