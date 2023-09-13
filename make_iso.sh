@@ -11,14 +11,22 @@ if [ `/bin/id -u` -ne 0 ]; then
 
 fi
 
-# Define work folders path
+echo "
+┏┓        ┓ ┓  ┓  ┳┏┓┏┓  ┏┓          
+┣┫┏┓┓┏┏┏┓┏┫┏┫┏┓┃  ┃┗┓┃┃  ┣ ┏┓┏╋┏┓┏┓┓┏
+┛┗┛┗┗┻┛┗ ┗┻┗┻┗┛┗  ┻┗┛┗┛  ┻ ┗┻┗┗┗┛┛ ┗┫
+----------------------------------- ┛
+
+"
+
+# Define work folder paths
 bootstrap_path=$(pwd)/bootstrap
 resources_path=$(pwd)/resources
 result_path=$(pwd)/result
 container_debian_base_path=$(pwd)/container_debian_base
 minbase_debian_path=$(pwd)/minbase_debian
 
-# Set the /sbin folder on PATH to avoid 'not found' problems
+# Set the /sbin folder on PATH to avoid 'not found' problems on debian
 export PATH=$PATH:/usr/sbin/
 
 if [ ! -d $container_debian_base_path ]; then
@@ -94,11 +102,12 @@ mkdir -p $bootstrap_path/{staging/{EFI/BOOT,boot/grub/x86_64-efi,isolinux,live},
 
 # Copy nessessary files on the chroot (Do not change the sed '26i': 
 # statement is on line 26 to prevent being overrided by others statements)
-# (*) The container `/etc/hosts` file needs to be modified manually
-cp -a resources_path/anweddol_container_setup.sh $bootstrap_path/chroot/bin/
+cp -a $resources_path/anweddol_container_setup.sh $bootstrap_path/chroot/bin/
 cp $resources_path/WELCOME.txt $bootstrap_path/chroot/etc/
+
 sed -i "26i endpoint ALL=(ALL:ALL) NOPASSWD:/usr/bin/anweddol_container_setup.sh" $bootstrap_path/chroot/etc/sudoers
-sed -i "1i # Artificial Anweddol container hosts file\n\n127.0.0.1  anweddol-container\n::1        anweddol-container" # (*)
+# The container `/etc/hosts` file needs to be modified manually
+sed -i "1i # Artificial Anweddol container hosts file\n\n127.0.0.1  anweddol-container\n::1        anweddol-container"
 
 # Make a squashed filesystem of the previously administrated chroot 
 mksquashfs $bootstrap_path/chroot $bootstrap_path/staging/live/filesystem.squashfs -e boot

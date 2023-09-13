@@ -1,8 +1,7 @@
 # Anweddol container ISO factory
-[![chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://anweddol.zulipchat.com)
 ---
 
-This script creates functional and up-to-date live debian images that [Anweddol servers](https://github.com/the-anweddol-project/Anweddol-server) will be using for containers.
+This script creates functional and up-to-date live debian images that servers will be using for containers.
 
 ## Requirements
 
@@ -11,15 +10,16 @@ This script is made to operate on Debian environments.
 
 You need these packages installed on the machine : 
 
- - debootstrap 
- - squashfs-tools 
- - xorriso isolinux 
- - syslinux-efi 
- - grub-pc-bin 
- - grub-efi-amd64-bin 
- - grub-efi-ia32-bin 
- - mtools 
- - dosfstools
+- debootstrap 
+- squashfs-tools 
+- xorriso 
+- isolinux 
+- syslinux-efi 
+- grub-pc-bin 
+- grub-efi-amd64-bin 
+- grub-efi-ia32-bin 
+- mtools 
+- dosfstools
 
 Install them with your package manager.
 
@@ -42,11 +42,6 @@ While made to operate on Debian environments, it is recommended to run this scri
 This software is under the GNU general public license v3, available under any later version.
 
 This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law.
-
-See the Anweddol community pages : 
-
-- Anweddol [reddit community page](https://www.reddit.com/r/Anweddol)
-- Join the Anweddol [Zulip organization](https://anweddol.zulipchat.com)
 
 ## Developer / Maintainer
 
