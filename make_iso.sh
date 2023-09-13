@@ -30,16 +30,13 @@ minbase_debian_path=$(pwd)/minbase_debian
 export PATH=$PATH:/usr/sbin/
 
 if [ ! -d $container_debian_base_path ]; then
-
     mkdir -p $container_debian_base_path
 
     if [ -d $minbase_debian_path ]; then 
-
         # If the minbase debian path exists, copy its content on the container debian base
         cp -R $minbase_debian_path/* $container_debian_base_path/
     
     else
-    
         mkdir -p $container_debian_base_path
         mkdir -p $minbase_debian_path
 
@@ -75,7 +72,7 @@ if [ ! -d $container_debian_base_path ]; then
             nano -y && \
         apt clean && \
         echo 'anweddol-container' > ./etc/hostname && \
-        useradd -c 'Anweddol container endpoint' -G sudo -m endpoint && \
+        useradd -c 'Anweddol container endpoint user' -G sudo -m endpoint && \
         printf 'endpoint\nendpoint' | passwd endpoint && \
         history -c"
 
@@ -102,12 +99,14 @@ mkdir -p $bootstrap_path/{staging/{EFI/BOOT,boot/grub/x86_64-efi,isolinux,live},
 
 # Copy nessessary files on the chroot (Do not change the sed '26i': 
 # statement is on line 26 to prevent being overrided by others statements)
-cp -a $resources_path/anweddol_container_setup.sh $bootstrap_path/chroot/bin/
+cp $resources_path/anweddol_container_setup.sh $bootstrap_path/chroot/bin/
+chmod +x $bootstrap_path/chroot/bin/anweddol_container_setup.sh
+
 cp $resources_path/WELCOME.txt $bootstrap_path/chroot/etc/
 
-sed -i "26i endpoint ALL=(ALL:ALL) NOPASSWD:/usr/bin/anweddol_container_setup.sh" $bootstrap_path/chroot/etc/sudoers
+sed -i "26i endpoint ALL=(ALL:ALL) NOPASSWD:/bin/anweddol_container_setup.sh" $bootstrap_path/chroot/etc/sudoers
 # The container `/etc/hosts` file needs to be modified manually
-sed -i "1i # Artificial Anweddol container hosts file\n\n127.0.0.1  anweddol-container\n::1        anweddol-container"
+sed -i "1i 127.0.0.1  anweddol-container\n::1        anweddol-container" $bootstrap_path/chroot/etc/hosts
 
 # Make a squashed filesystem of the previously administrated chroot 
 mksquashfs $bootstrap_path/chroot $bootstrap_path/staging/live/filesystem.squashfs -e boot
@@ -171,11 +170,9 @@ sha256sum --tag $result_path/anweddol_container.iso > $result_path/sha256sum.txt
 
 # Update or create the version file content
 if [ ! -f $result_path/version.txt ]; then
-
     echo "1" > $result_path/version.txt
 
 else 
-
     echo $(($(head -n 1 $result_path/version.txt) + 1)) > $result_path/version.txt
 
 fi
