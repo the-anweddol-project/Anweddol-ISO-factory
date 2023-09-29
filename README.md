@@ -23,6 +23,10 @@ You need these packages installed on the machine :
 
 Install them with your package manager, or by executing the `setup.sh` script as root.
 
+## Getting a ready to use image
+
+You can get a ready-to-use ISO image here : https://mega.nz/folder/BTFyVCLB#DNC2K8Lmhgbk6QWrVpeznw
+
 ## Usage
 
 Just run the `make_iso.sh` script : 
