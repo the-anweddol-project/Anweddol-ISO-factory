@@ -1,12 +1,11 @@
 # Anweddol container ISO factory
 ---
 
-This script creates functional and up-to-date live debian images that servers will be using for containers.
+This script creates functional and up-to-date live debian images that servers will be using for container domains.
 
 ## Requirements
 
-This script is made to operate on Debian environments.
-**Note that others distros aren't tested yet since the result image is a debian itself.**
+This script is made to operate on Debian environments. **Note that others distros aren't tested yet since the result image is a debian itself.**
 
 You need these packages installed on the machine : 
 
@@ -23,10 +22,6 @@ You need these packages installed on the machine :
 
 Install them with your package manager, or by executing the `setup.sh` script as root.
 
-## Getting a ready to use image
-
-You can get a ready-to-use ISO image here : https://mega.nz/folder/BTFyVCLB#DNC2K8Lmhgbk6QWrVpeznw
-
 ## Usage
 
 Just run the `make_iso.sh` script : 
@@ -35,7 +30,7 @@ Just run the `make_iso.sh` script :
 $ sudo bash make_iso.sh
 ```
 
-Once the script is finished, you will retrieve the created ISO in the `result` folder, with its checksums.
+Once the script is finished, you will retrieve the created ISO in the `result` folder, with its affiliated checksums.
 
 ## Recommendations
 
@@ -43,7 +38,7 @@ While made to operate on Debian environments, it is recommended to run this scri
 
 ## License
 
-This software is under the GNU general public license v3, available under any later version.
+This software is under the MIT license.
 
 This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law.
 
