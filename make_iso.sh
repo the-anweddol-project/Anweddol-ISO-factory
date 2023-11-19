@@ -39,7 +39,7 @@ if [ ! -d $container_debian_base_path ]; then
         mkdir -p $minbase_debian_path
 
     	# Download the minbase debian from US mirror (change it to a closer one if needed)
-    	debootstrap --arch=amd64 --variant=minbase bullseye $container_debian_base_path http://ftp.us.debian.org/debian/
+    	debootstrap --arch=amd64 --variant=minbase bookworm $container_debian_base_path http://ftp.us.debian.org/debian/
         
         # Make a backup of the downloaded minbase
         cp -R $container_debian_base_path/* $minbase_debian_path/
